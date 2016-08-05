@@ -1,4 +1,5 @@
 rm(list=ls())
+par(mfrow=c(1,1))
 
 # Set the working directory
 setwd('~/axs/docs/branding/Rajamundhry/')
@@ -13,15 +14,27 @@ head(stMarksDF)
 str(stMarksDF)
 
 # Remove NA
-stMarksDF = complete.cases(stMarksDF)
+stMarksDF = stMarksDF[complete.cases(stMarksDF),]
+
 
 # Find total Marks for each student
+colfunc <- colorRampPalette(c("green", "orange"))
+par(las=2) 
+stTotalMarks = apply(marksDF,1,sum)
+stRank = stTotalMarks[order(stTotalMarks, decreasing = T)]
+barplot(stRank[1:10], names=stMarksDF[names(stRank[1:10]),]$Roll.No., col=colfunc(10))
 
-
-
+# Find the topper
 
 # Take out Roll Nos for the time being
 marksDF = subset(stMarksDF, select=-c(Roll.No.))
+
+# Tabulate pass vs fail
+passFail = table(marksDF>=40)
+pie(passFail, col = c('red', 'blue'), main="Passed Vs Failed", cex=0.8,
+    labels=paste0(names(passFail), " - ", passFail))
+
+table(any(marksDF))
 
 # Summarize the data in the marks DF
 summary(marksDF)
@@ -47,7 +60,10 @@ corrplot(cor(mtcars), type="lower", method="circle")
 # Histogram plots
 hist(stMarksDF$MEFA, col=rainbow(12:14))
 
-barplot(c(marksDF[1,]), main="One student's marks")
+par(mfrow=c(2,4))
+for (i in seq(1,8)) {
+  barplot(as.matrix(marksDF)[i,], col=rainbow(12:13))
+}
 
 # Combining plots
 par(mfrow=c(2,1))
