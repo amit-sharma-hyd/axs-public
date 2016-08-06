@@ -2,7 +2,7 @@ rm(list=ls())
 par(mfrow=c(1,1))
 
 # Set the working directory
-setwd('~/axs/docs/branding/Rajamundhry/')
+setwd('.')
 
 # Load the dataframe from the CSV file
 stMarksDF = read.csv('Students_Marks_2.csv')
@@ -120,3 +120,38 @@ preds = predict(model, newdata = test, type = "response")
 res = data.frame(test$MFCS_Great_Score, round(preds,0))
 names(res) = c("Actual", "Pred")
 res
+
+
+#################################
+#        DECISION TREE          #
+#################################
+# Lets find a good cutoff for marks to be classified as Great Score (1) or not (0)
+summary(marksDF$MFCS)
+table(marksDF$MFCS>70)
+marksDF$MFCS_Great_Score = ifelse(marksDF$MFCS>70, 1, 0)
+
+# Now we shall remove the MFCS col to remove direct calculation
+df = marksDF
+df$MFCS = NULL
+
+# Lets take some students as test set and remaining as test
+N = nrow(df)
+trainRows = sample(1:N, N*0.9, replace=F)
+train = df[trainRows,]
+test = df[-trainRows,]
+
+# Conditional Inference Tree 
+library(party)
+fit <- ctree(MFCS_Great_Score ~.,data=train)
+plot(fit, main="Conditional Inference Tree for Great Score")
+preds = predict(fit, newdata = test, type = "response")
+res = data.frame(test$MFCS_Great_Score, round(preds,0))
+names(res) = c("Actual", "Pred")
+res
+preds = predict(model, newdata = test, type = "response")
+res = data.frame(test$MFCS_Great_Score, round(preds,0))
+names(res) = c("Actual", "Pred")
+res
+
+
+
