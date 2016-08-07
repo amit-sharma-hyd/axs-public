@@ -68,7 +68,7 @@ corrplot(cr, type="lower")
 hist(stMarksDF$MEFA, col=rainbow(12:14))
 
 # Combining plots
-par(mfrow=c(1,2), cex=0.8)
+par(mfrow=c(1,2), cex=0.8, las=2)
 boxplot(marksDF, outline=F, col=rainbow(12:14))
 barplot(sapply(marksDF, mean), col=rainbow(11:14))
 
