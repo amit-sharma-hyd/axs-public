@@ -1,7 +1,9 @@
+
 #########################################################################
 # Learning Statistical Data Analysis using                              #
 # Kaggle data for House Prices                                          #
-# https://www.kaggle.com/c/house-prices-advanced-regression-techniques  #
+# https://www.kaggle.com/c/house-prices-advanced-regression-techniques  # 
+# author: Amit Sharma                                                   #
 #########################################################################
 
 rm(list=ls())
@@ -43,12 +45,6 @@ boxplot(data$SalePrice, outline=F, main="Sale Price Distribution")
 # we can just use the column names
 attach(data)
 
-# Check the data frame
-head(data)
-
-# Check the datatypes of marks DF
-str(data)
-
 # Lets see how many Bldg Types are there
 barplot(table(BldgType), col=myCols)
 
@@ -65,13 +61,13 @@ boxplot(SaleRate ~ BldgType, col=myCols,
         outline=F, main="SaleRate across Bldg Types")
 
 par(mfrow=c(1,1), cex=0.8, las=2)
-boxplot(SalePrice ~ OverallCond+BldgType, col=myCols, outline=F,
+boxplot(SalePrice ~ OverallCond, col=myCols, outline=F,
         main="Sale Price across Overall Condition")
 
 # Calculate Years Old
 data$YearsOld = 2016 - YearBuilt
 attach(data)
-plot (YearsOld, SalePrice)
+plot (YearsOld, SalePrice, main="Sale Price Vs YearsOld")
 
 # Lets just look at Numeric columns for a while for 
 # correlation analysis
@@ -106,62 +102,32 @@ train = data[trainRows,]
 test = data[-trainRows,]
 
 # Now lets fit the model
-head(train)
-# Let's make PS score as output variable and all others input
+model = lm(SalePrice~.,
+           data=train)
+summary(model)
+
+# Pick up the most significant (***) parameters and rerun the model
 model = lm(SalePrice~MSSubClass+LotArea+OverallQual+
              OverallCond+MasVnrArea+YearsOld,
            data=train)
 summary(model)
 preds = predict(model, newdata = test)
 
-# Lets look at top 10 predictions and actual values
-# just to visually compare
-data.frame(test$SalePrice[1:10],preds[1:10])
+
 
 res = data.frame(test$SalePrice, round(preds,0))
 names(res) = c("Actual", "Pred")
-res
+# Lets look at top 10 predictions and actual values
+# just to visually compare
+head(res,10)
+
+# Lets calc Mean Squared Error
 mse = sum((res$Actual-res$Pred)^2)/nrow(res)
 mse
-# Is the MSE any better than mean of train output
+# Is the MSE any better than mean of train output (which would
+# be our simplest/naiivest guess)
 naiveMSE = sum((res$Actual-mean(train$SalePrice))^2)/nrow(res)
 naiveMSE
 
-#############################
-# CLASSIFICATION TECHNIQUES #
-#############################
-
-# Lets create some data for classification algorithm
-df = data
-
-boxplot(SalePrice)
-# Lets find a good cutoff /threshold for 
-# price
-highPriceThreshold = 250000
-summary(df$SalePrice)
-table(df$SalePrice>highPriceThreshold)
-# Set the new column to be 1 if SalePrice is greater than threshold else 0
-df$Costly = ifelse(df$SalePrice>highPriceThreshold, 1, 0)
-df$Costly = as.factor(df$Costly)
-
-# Now we shall remove the Sale Price col to remove direct calculation
-test$SalePrice = NULL
-
-# Lets take some students as test set and remaining as test
-# Using library caTools to create a uniform train/test 
-library(caTools)
-trainRows = sample.split(df$Costly, SplitRatio=0.9)
-train = df[trainRows,]
-test  = df[!trainRows,]
-
-############################
-# 1- LOGISTIC REGRESSSION  #
-############################
-
-model <- glm(Costly ~.,family=binomial(link='logit'),data=train)
-
-summary(model)
-preds = predict(model, newdata = test, type = "response")
-res = data.frame(df$Costly, round(preds,0))
-names(res) = c("Actual", "Pred")
-res
+# Naive Mean Squared error is bigger than our MSE (not bad)
+naiveMSE/mse
