@@ -11771,7 +11771,16 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="In-this-exercies,-we-will-attempt-to-predict-house-price-by-learning-from-data">In this exercies, we will attempt to predict house price by learning from data<a class="anchor-link" href="#In-this-exercies,-we-will-attempt-to-predict-house-price-by-learning-from-data">&#182;</a></h1>
+<h1 id="House-Price-Prediction-using-Linear-Regression">House Price Prediction using Linear Regression<a class="anchor-link" href="#House-Price-Prediction-using-Linear-Regression">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src='https://static1.squarespace.com/static/513a3df3e4b0c1b51a65f261/t/5787d9dff7e0aba701f1d0af/1468520929289/housing+market.png'></p>
+
 </div>
 </div>
 </div>
@@ -11785,7 +11794,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[460]:</div>
+<div class="prompt input_prompt">In&nbsp;[492]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -11808,7 +11817,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[461]:</div>
+<div class="prompt input_prompt">In&nbsp;[493]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./house_price_basic_data.csv&quot;</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
@@ -11821,7 +11830,40 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[462]:</div>
+<div class="prompt input_prompt">In&nbsp;[494]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[494]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(1460, 81)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[498]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -11837,7 +11879,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[462]:</div>
+<div class="prompt output_prompt">Out[498]:</div>
 
 
 
@@ -12024,37 +12066,17 @@ div#notebook {
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[463]:</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># df = df[[&#39;Id&#39;, &#39;OverallQual&#39;, &#39;OverallCond&#39;, &#39;GarageCars&#39;, &#39;YearBuilt&#39;, </span>
-<span class="c1">#          &#39;YrSold&#39;, &#39;SalePrice&#39;, &#39;LotArea&#39;, &#39;Neighborhood&#39; ]]</span>
-<span class="c1"># df.to_csv(&#39;./house_price_basic_data.csv&#39;, index=False)</span>
-</pre></div>
-
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Explore-the-data-across-columns">Explore the data across columns<a class="anchor-link" href="#Explore-the-data-across-columns">&#182;</a></h2>
 </div>
 </div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[464]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Explore the data across columns</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[465]:</div>
+<div class="prompt input_prompt">In&nbsp;[500]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
@@ -12309,7 +12331,59 @@ cgAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[466]:</div>
+<div class="prompt input_prompt">In&nbsp;[501]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[501]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([u&#39;Id&#39;, u&#39;MSSubClass&#39;, u&#39;MSZoning&#39;, u&#39;LotFrontage&#39;, u&#39;LotArea&#39;,
+       u&#39;Street&#39;, u&#39;Alley&#39;, u&#39;LotShape&#39;, u&#39;LandContour&#39;, u&#39;Utilities&#39;,
+       u&#39;LotConfig&#39;, u&#39;LandSlope&#39;, u&#39;Neighborhood&#39;, u&#39;Condition1&#39;,
+       u&#39;Condition2&#39;, u&#39;BldgType&#39;, u&#39;HouseStyle&#39;, u&#39;OverallQual&#39;,
+       u&#39;OverallCond&#39;, u&#39;YearBuilt&#39;, u&#39;YearRemodAdd&#39;, u&#39;RoofStyle&#39;,
+       u&#39;RoofMatl&#39;, u&#39;Exterior1st&#39;, u&#39;Exterior2nd&#39;, u&#39;MasVnrType&#39;,
+       u&#39;MasVnrArea&#39;, u&#39;ExterQual&#39;, u&#39;ExterCond&#39;, u&#39;Foundation&#39;, u&#39;BsmtQual&#39;,
+       u&#39;BsmtCond&#39;, u&#39;BsmtExposure&#39;, u&#39;BsmtFinType1&#39;, u&#39;BsmtFinSF1&#39;,
+       u&#39;BsmtFinType2&#39;, u&#39;BsmtFinSF2&#39;, u&#39;BsmtUnfSF&#39;, u&#39;TotalBsmtSF&#39;,
+       u&#39;Heating&#39;, u&#39;HeatingQC&#39;, u&#39;CentralAir&#39;, u&#39;Electrical&#39;, u&#39;1stFlrSF&#39;,
+       u&#39;2ndFlrSF&#39;, u&#39;LowQualFinSF&#39;, u&#39;GrLivArea&#39;, u&#39;BsmtFullBath&#39;,
+       u&#39;BsmtHalfBath&#39;, u&#39;FullBath&#39;, u&#39;HalfBath&#39;, u&#39;BedroomAbvGr&#39;,
+       u&#39;KitchenAbvGr&#39;, u&#39;KitchenQual&#39;, u&#39;TotRmsAbvGrd&#39;, u&#39;Functional&#39;,
+       u&#39;Fireplaces&#39;, u&#39;FireplaceQu&#39;, u&#39;GarageType&#39;, u&#39;GarageYrBlt&#39;,
+       u&#39;GarageFinish&#39;, u&#39;GarageCars&#39;, u&#39;GarageArea&#39;, u&#39;GarageQual&#39;,
+       u&#39;GarageCond&#39;, u&#39;PavedDrive&#39;, u&#39;WoodDeckSF&#39;, u&#39;OpenPorchSF&#39;,
+       u&#39;EnclosedPorch&#39;, u&#39;3SsnPorch&#39;, u&#39;ScreenPorch&#39;, u&#39;PoolArea&#39;, u&#39;PoolQC&#39;,
+       u&#39;Fence&#39;, u&#39;MiscFeature&#39;, u&#39;MiscVal&#39;, u&#39;MoSold&#39;, u&#39;YrSold&#39;, u&#39;SaleType&#39;,
+       u&#39;SaleCondition&#39;, u&#39;SalePrice&#39;],
+      dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[502]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;OverallQual&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
@@ -12909,7 +12983,7 @@ IYQQQfD/A6DEOtr3noxLAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[467]:</div>
+<div class="prompt input_prompt">In&nbsp;[503]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Neighborhood&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -12942,7 +13016,7 @@ Name: Neighborhood, dtype: object
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[467]:</div>
+<div class="prompt output_prompt">Out[503]:</div>
 
 
 
@@ -12964,7 +13038,7 @@ Name: Neighborhood, dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[468]:</div>
+<div class="prompt input_prompt">In&nbsp;[504]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="s1">&#39;Neighborhood&#39;</span><span class="p">,</span> <span class="n">rot</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
@@ -13934,7 +14008,7 @@ oaGhoaGh6QfaYKKhoaGhoaGh6Yf/By8GQZr2ViNAAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[469]:</div>
+<div class="prompt input_prompt">In&nbsp;[505]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;NumYearsOld&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;YrSold&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;YearBuilt&#39;</span><span class="p">]</span>
@@ -13955,7 +14029,7 @@ oaGhoaGh6QfaYKKhoaGhoaGh6Yf/By8GQZr2ViNAAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[470]:</div>
+<div class="prompt input_prompt">In&nbsp;[506]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="s1">&#39;NumYearsOld&#39;</span><span class="p">)</span>
@@ -14138,7 +14212,7 @@ OgAAgBFEBwAAMILoAAAARvx/UrNebjR1k60AAAAASUVORK5CYII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[471]:</div>
+<div class="prompt input_prompt">In&nbsp;[507]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="s1">&#39;NumYearsOld&#39;</span><span class="p">,</span> <span class="s1">&#39;SalePrice&#39;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;scatter&#39;</span><span class="p">)</span>
@@ -14154,13 +14228,13 @@ OgAAgBFEBwAAMILoAAAARvx/UrNebjR1k60AAAAASUVORK5CYII=
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[471]:</div>
+<div class="prompt output_prompt">Out[507]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11a814ed0&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x11a92a690&gt;</pre>
 </div>
 
 </div>
@@ -15154,7 +15228,7 @@ EEII4QWSZAkhhBBCeIEkWUIIIYQQXiBJlhBCCCGEF0iSJYQQQgjhBZJkCSGEEEJ4wf8ANSwq8SyN
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Finally-let's-try-and-predict-the-house-price">Finally let's try and predict the house price<a class="anchor-link" href="#Finally-let's-try-and-predict-the-house-price">&#182;</a></h2>
+<h2 id="Finally-let's-try-to-learn-and-predict-the-house-price">Finally let's try to learn and predict the house price<a class="anchor-link" href="#Finally-let's-try-to-learn-and-predict-the-house-price">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -15168,7 +15242,7 @@ EEII4QWSZAkhhBBCeIEkWUIIIYQQXiBJlhBCCCGEF0iSJYQQQgjhBZJkCSGEEEJ4wf8ANSwq8SyN
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[472]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
@@ -15189,7 +15263,7 @@ EEII4QWSZAkhhBBCeIEkWUIIIYQQXiBJlhBCCCGEF0iSJYQQQgjhBZJkCSGEEEJ4wf8ANSwq8SyN
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[473]:</div>
+<div class="prompt input_prompt">In&nbsp;[508]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span> <span class="c1"># We want to remove all columns which are not int or float</span>
@@ -15205,7 +15279,7 @@ EEII4QWSZAkhhBBCeIEkWUIIIYQQXiBJlhBCCCGEF0iSJYQQQgjhBZJkCSGEEEJ4wf8ANSwq8SyN
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[473]:</div>
+<div class="prompt output_prompt">Out[508]:</div>
 
 
 
@@ -15225,7 +15299,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[474]:</div>
+<div class="prompt input_prompt">In&nbsp;[509]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="s2">&quot;Before removing numeric cols: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -15267,10 +15341,10 @@ After removing numeric cols: (1460, 39)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[475]:</div>
+<div class="prompt input_prompt">In&nbsp;[511]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()]</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -15283,13 +15357,15 @@ After removing numeric cols: (1460, 39)
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[475]:</div>
+<div class="prompt output_prompt">Out[511]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>Index([u&#39;LotFrontage&#39;, u&#39;MasVnrArea&#39;, u&#39;GarageYrBlt&#39;], dtype=&#39;object&#39;)</pre>
+<pre>False    36
+True      3
+dtype: int64</pre>
 </div>
 
 </div>
@@ -15308,7 +15384,7 @@ After removing numeric cols: (1460, 39)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[476]:</div>
+<div class="prompt input_prompt">In&nbsp;[512]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="s2">&quot;Before removing null cols: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -15350,7 +15426,7 @@ After removing null cols: (1460, 36)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[477]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># from sklearn.preprocessing import StandardScaler</span>
@@ -15375,7 +15451,7 @@ After removing null cols: (1460, 36)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[478]:</div>
+<div class="prompt input_prompt">In&nbsp;[513]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">]</span>
@@ -15390,7 +15466,40 @@ After removing null cols: (1460, 36)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[479]:</div>
+<div class="prompt input_prompt">In&nbsp;[516]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[516]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>((1460, 34), (1460,))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[519]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
@@ -15404,7 +15513,7 @@ After removing null cols: (1460, 36)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[480]:</div>
+<div class="prompt input_prompt">In&nbsp;[520]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
@@ -15417,7 +15526,7 @@ After removing null cols: (1460, 36)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[481]:</div>
+<div class="prompt input_prompt">In&nbsp;[521]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
@@ -15434,7 +15543,7 @@ After removing null cols: (1460, 36)
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[481]:</div>
+<div class="prompt output_prompt">Out[521]:</div>
 
 
 
@@ -15451,7 +15560,7 @@ After removing null cols: (1460, 36)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[482]:</div>
+<div class="prompt input_prompt">In&nbsp;[522]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span>
@@ -15467,7 +15576,7 @@ After removing null cols: (1460, 36)
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[482]:</div>
+<div class="prompt output_prompt">Out[522]:</div>
 
 
 
@@ -15484,7 +15593,7 @@ After removing null cols: (1460, 36)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[483]:</div>
+<div class="prompt input_prompt">In&nbsp;[523]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
@@ -15505,7 +15614,7 @@ After removing null cols: (1460, 36)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[484]:</div>
+<div class="prompt input_prompt">In&nbsp;[524]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Let&#39;s print the first few for manual inspection</span>
@@ -15522,7 +15631,7 @@ After removing null cols: (1460, 36)
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[484]:</div>
+<div class="prompt output_prompt">Out[524]:</div>
 
 
 
@@ -15556,7 +15665,7 @@ After removing null cols: (1460, 36)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[485]:</div>
+<div class="prompt input_prompt">In&nbsp;[525]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
@@ -15572,13 +15681,13 @@ After removing null cols: (1460, 36)
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[485]:</div>
+<div class="prompt output_prompt">Out[525]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.collections.PathCollection at 0x12115f810&gt;</pre>
+<pre>&lt;matplotlib.collections.PathCollection at 0x12108e110&gt;</pre>
 </div>
 
 </div>
@@ -16000,7 +16109,7 @@ YII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[486]:</div>
+<div class="prompt input_prompt">In&nbsp;[526]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
@@ -16017,7 +16126,7 @@ YII=
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[486]:</div>
+<div class="prompt output_prompt">Out[526]:</div>
 
 
 
@@ -16042,10 +16151,12 @@ YII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[487]:</div>
+<div class="prompt input_prompt">In&nbsp;[528]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_test</span><span class="p">)]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)))</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Average Price of the house </span>
+<span class="n">mean_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
+<span class="n">mean_price</span>
 </pre></div>
 
 </div>
@@ -16058,7 +16169,40 @@ YII=
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[487]:</div>
+<div class="prompt output_prompt">Out[528]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>180666.02489626556</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[529]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="p">[</span><span class="n">mean_price</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[529]:</div>
 
 
 
@@ -16083,7 +16227,7 @@ YII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[488]:</div>
+<div class="prompt input_prompt">In&nbsp;[530]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
@@ -16100,7 +16244,7 @@ YII=
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[488]:</div>
+<div class="prompt output_prompt">Out[530]:</div>
 
 
 
@@ -16125,7 +16269,7 @@ YII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[489]:</div>
+<div class="prompt input_prompt">In&nbsp;[531]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span>
@@ -16141,7 +16285,7 @@ YII=
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[489]:</div>
+<div class="prompt output_prompt">Out[531]:</div>
 
 
 
@@ -16169,12 +16313,12 @@ YII=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[490]:</div>
+<div class="prompt input_prompt">In&nbsp;[533]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Sort the coef_</span>
 <span class="n">index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">))[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-<span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="n">index</span><span class="p">])[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="nb">zip</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="n">index</span><span class="p">])[:</span><span class="mi">20</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -16187,7 +16331,7 @@ YII=
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[490]:</div>
+<div class="prompt output_prompt">Out[533]:</div>
 
 
 
@@ -16202,7 +16346,17 @@ YII=
  (&#39;FullBath&#39;, 5530.429600740219),
  (&#39;Fireplaces&#39;, 4855.575817426311),
  (&#39;OverallCond&#39;, 2571.0474582987777),
- (&#39;BsmtHalfBath&#39;, 853.56421507165828)]</pre>
+ (&#39;BsmtHalfBath&#39;, 853.56421507165828),
+ (&#39;HalfBath&#39;, 342.78935247256783),
+ (&#39;YearRemodAdd&#39;, 200.26362488877427),
+ (&#39;MSSubClass&#39;, -189.64326691420271),
+ (&#39;YearBuilt&#39;, 168.1949700802021),
+ (&#39;PoolArea&#39;, -165.33530388898666),
+ (&#39;NumYearsOld&#39;, -136.67106756282556),
+ (&#39;MoSold&#39;, -98.782586539781633),
+ (&#39;ScreenPorch&#39;, 91.964019638954255),
+ (&#39;3SsnPorch&#39;, 49.168510527770138),
+ (&#39;GrLivArea&#39;, 33.320496166703833)]</pre>
 </div>
 
 </div>

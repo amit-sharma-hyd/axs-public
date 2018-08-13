@@ -9,7 +9,8 @@
 rm(list=ls())
 
 # Set the working directory
-setwd('~/axs/kaggle/house-prices/')
+# setwd("C:\\work\\vamshi")
+setwd('~/axs/github/axs-public/training/house-prices/')
 
 # Let's set scientific notation 
 options(scipen=10)
