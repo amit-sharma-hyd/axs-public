@@ -1,45 +1,23 @@
 from __future__ import print_function
-from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
-import plotly.graph_objs as go
-init_notebook_mode()
+import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def barPlot(y, title="", xaxis="", yaxis="", labels=False, xcat=False):
-    if labels: 
-        data = [go.Bar(x=y.index.values, y=y, text=y, textposition = 'auto')]
-    else:
-        data = [go.Bar(x=y.index.values, y=y)]
-
-    if xcat:
-        layout = go.Layout(title=title,
-                        xaxis=dict(title=xaxis, type='category'),
-                        yaxis=dict(title=yaxis))
-    else:
-        layout = go.Layout(title=title,
-                        xaxis=dict(title=xaxis),
-                        yaxis=dict(title=yaxis))
-
+def barPlotY(y, title="", xaxis="", yaxis=""): 
+    data = [go.Bar(x=y.index.values, y=y)]
+    layout = go.Layout(title=title,
+                    xaxis=dict(title=xaxis),
+                    yaxis=dict(title=yaxis))
     fig = go.Figure(data=data, layout=layout)
     iplot(fig, show_link=False)
 
-def barPlotXY(x, y, title="", xaxis="", yaxis="", labels=False, xcat=False): 
-    if labels:
-        data = [go.Bar(x=x, y=y, text=y, textposition = 'auto')]
-    else:
-        data = [go.Bar(x=x, y=y)]
-
-    if xcat:
-        layout = go.Layout(title=title,
-                        xaxis=dict(title=xaxis, type='category'),
-                        yaxis=dict(title=yaxis))
-    else:
-        layout = go.Layout(title=title,
-                        xaxis=dict(title=xaxis),
-                        yaxis=dict(title=yaxis))
-
+def barPlotXY(x, y, title="", xaxis="", yaxis=""): 
+    data = [go.Bar(x=x, y=y)]
+    layout = go.Layout(title=title,
+                    xaxis=dict(title=xaxis),
+                    yaxis=dict(title=yaxis))
     fig = go.Figure(data=data, layout=layout)
     iplot(fig, show_link=False)
 
@@ -58,23 +36,15 @@ def groupedBoxPlot(df, col=None, byCol=None, plotinline=True, title="", xaxis=""
         col = byCol
     data = []
     for byColVal in df[byCol].unique():
-        data.append(go.Box(y=df[df[byCol]==byColVal][col], name=str(byColVal)))
+        data.append(go.Box(y=df[df[byCol]==byColVal][col]))
     layout = go.Layout(title=title,
                     xaxis=dict(title=xaxis),
-                    yaxis=dict(title=col))
+                    yaxis=dict(title=yaxis))
     fig = go.Figure(data=data, layout=layout)
     if (plotinline):
         iplot(fig, show_link=False)
     else:
         return fig    
-
-def scatterPlot(x, y, title="", xaxis="", yaxis=""):
-    data = [go.Scatter(x=x, y=y)]
-    layout = go.Layout(title=title,
-                    xaxis=dict(title=xaxis),
-                    yaxis=dict(title=yaxis))
-    fig = go.Figure(data=data, layout=layout)
-    iplot(fig, show_link=False)    
 
 def print_cm(cm, labels, hide_zeroes=False, hide_diagonal=False, hide_threshold=None):
     """pretty print for confusion matrixes"""
