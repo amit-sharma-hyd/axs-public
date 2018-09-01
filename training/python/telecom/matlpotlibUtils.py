@@ -46,6 +46,14 @@ def groupedBoxPlot(df, col=None, byCol=None, plotinline=True, title="", xaxis=""
     else:
         return fig    
 
+def histPlot(x, title="", xaxis="", yaxis=""):
+    data = [go.Histogram(x=x)]
+    layout = go.Layout(title=title,
+                    xaxis=dict(title=xaxis),
+                    yaxis=dict(title=yaxis))
+    fig = go.Figure(data=data, layout=layout)    
+    iplot(fig, show_link=False)
+
 def print_cm(cm, labels, hide_zeroes=False, hide_diagonal=False, hide_threshold=None):
     """pretty print for confusion matrixes"""
     columnwidth = max([len(x) for x in labels] + [5])  # 5 is value length

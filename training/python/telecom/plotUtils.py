@@ -6,6 +6,7 @@ from sklearn.metrics import confusion_matrix
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import plotly.figure_factory as ff
 
 def barPlot(y, title="", xaxis="", yaxis="", labels=False, xcat=False):
     if labels: 
@@ -53,6 +54,16 @@ def stackedBarPlotY(y, title="", xaxis="", yaxis=""):
     fig = go.Figure(data=data, layout=layout)
     iplot(fig, show_link=False)
 
+
+def boxPlot(y, plotinline=True, title="", xaxis="", yaxis=""): 
+    data = [go.Box(y=y)]
+    layout = go.Layout(title=title,
+                    xaxis=dict(title=xaxis),
+                    yaxis=dict(title='Count'))
+    fig = go.Figure(data=data, layout=layout)
+    iplot(fig, show_link=False)
+    
+
 def groupedBoxPlot(df, col=None, byCol=None, plotinline=True, title="", xaxis="", yaxis=""): 
     if byCol == None:
         col = byCol
@@ -75,6 +86,15 @@ def scatterPlot(x, y, title="", xaxis="", yaxis=""):
                     yaxis=dict(title=yaxis))
     fig = go.Figure(data=data, layout=layout)
     iplot(fig, show_link=False)    
+
+
+def histPlot(y, title="", xaxis="", yaxis=""):
+    data = [go.Histogram(x=y)]
+    layout = go.Layout(title=title,
+                    xaxis=dict(title=xaxis),
+                    yaxis=dict(title=yaxis))
+    fig = go.Figure(data=data, layout=layout)    
+    iplot(fig, show_link=False)
 
 def print_cm(cm, labels, hide_zeroes=False, hide_diagonal=False, hide_threshold=None):
     """pretty print for confusion matrixes"""
@@ -108,7 +128,27 @@ def print_cm(cm, labels, hide_zeroes=False, hide_diagonal=False, hide_threshold=
             print(cell, end=" ")
         print()
 
-def print_confusion_matrix(confusion_matrix, class_names, figsize = (6,5), fontsize=12):
+
+def plotConfusionMatrix(cm, class_names, figsize=(6,5), title='Confusion Matrix', xaxis='Predicted', yaxis='Actual', fontsuze=15):
+    # layout = go.Layout(title=title,
+    #                 autosize=False,
+    #                 width=400,
+    #                 height=400,
+    #                 showlegend=False,
+    #                 ,
+    #                 yaxis=dict(title=yaxis, type='category'))
+
+    colorscale = [[0, '#22AAEE'], [1, '#2288EE']]
+    fig = ff.create_annotated_heatmap(cm, x=class_names, y=class_names, xtype='category', 
+                                        ytype='category', colorscale=colorscale, annotation_text=cm)
+    fig['layout'].update(height=400, width=400, title=title, xaxis=dict(title=xaxis, type='category', showline=True), 
+    yaxis=dict(title=yaxis, type='category'))
+    fig['layout']['xaxis'].update(side='bottom')
+    fig['layout']['yaxis'].update(side='left')
+
+    iplot(fig, filename='basic-heatmap')    
+
+def print_confusion_matrix(confusion_matrix, class_names, figsize = (6,5), fontsize=15):
     """Prints a confusion matrix, as returned by sklearn.metrics.confusion_matrix, as a heatmap.
     
     Arguments
@@ -139,6 +179,6 @@ def print_confusion_matrix(confusion_matrix, class_names, figsize = (6,5), fonts
         raise ValueError("Confusion matrix values must be integers.")
     heatmap.yaxis.set_ticklabels(heatmap.yaxis.get_ticklabels(), rotation=0, ha='right', fontsize=fontsize)
     heatmap.xaxis.set_ticklabels(heatmap.xaxis.get_ticklabels(), rotation=0, ha='right', fontsize=fontsize)
-    plt.ylabel('True label')
-    plt.xlabel('Predicted label')
+    plt.ylabel('True label', fontsize=fontsize)
+    plt.xlabel('Predicted label', fontsize=fontsize)
     return fig
