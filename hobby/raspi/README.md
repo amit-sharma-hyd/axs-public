@@ -17,7 +17,7 @@
 
 ## TODO: 
 
-- Add AI based photo cropping
+- Add AI based photo cropping - DONE - YaY 😊
 - Add Resume Power-on state after reboot
 
 
