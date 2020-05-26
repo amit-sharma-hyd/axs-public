@@ -1,0 +1,173 @@
+Notes on Higgs
+
+> aggr(trgData, plot=FALSE)
+
+ Missings in variables:
+               Variable Count
+           DER_mass_MMC 19189
+   DER_deltaeta_jet_jet 98052
+       DER_mass_jet_jet 98052
+    DER_prodeta_jet_jet 98052
+ DER_lep_eta_centrality 98052
+     PRI_jet_leading_pt 54381
+    PRI_jet_leading_eta 54381
+    PRI_jet_leading_phi 54381
+  PRI_jet_subleading_pt 98052
+ PRI_jet_subleading_eta 98052
+ PRI_jet_subleading_phi 98052
+ 
+> summary(trgData)
+  DER_mass_MMC    DER_mass_transverse_met_lep  DER_mass_vis        DER_pt_h       DER_deltaeta_jet_jet DER_mass_jet_jet
+ Min.   :-2.072   Min.   :-1.3340             Min.   :-1.9123   Min.   :-0.9146   Min.   :-1.40        Min.   :-0.91   
+ 1st Qu.:-0.514   1st Qu.:-0.8409             1st Qu.:-0.5309   1st Qu.:-0.6780   1st Qu.:-0.89        1st Qu.:-0.67   
+ Median :-0.142   Median :-0.1272             Median :-0.1653   Median :-0.3049   Median :-0.15        Median :-0.37   
+ Mean   : 0.000   Mean   : 0.0000             Mean   : 0.0000   Mean   : 0.0000   Mean   : 0.00        Mean   : 0.00   
+ 3rd Qu.: 0.245   3rd Qu.: 0.6885             3rd Qu.: 0.2838   3rd Qu.: 0.3440   3rd Qu.: 0.76        3rd Qu.: 0.29   
+ Max.   :19.613   Max.   :15.5863             Max.   :31.9264   Max.   :42.1903   Max.   : 3.36        Max.   :10.92   
+ NA's   :19189                                                                    NA's   :98052        NA's   :98052   
+ DER_prodeta_jet_jet DER_deltar_tau_lep   DER_pt_tot         DER_sum_pt      DER_pt_ratio_lep_tau
+ Min.   :-4.62       Min.   :-2.8030    Min.   : -0.8250   Min.   :-0.9885   Min.   :-1.6145     
+ 1st Qu.:-0.53       1st Qu.:-0.7212    1st Qu.: -0.7017   1st Qu.:-0.7055   1st Qu.:-0.6599     
+ Median : 0.18       Median : 0.1587    Median : -0.2989   Median :-0.3188   Median :-0.1908     
+ Mean   : 0.00       Mean   : 0.0000    Mean   :  0.0000   Mean   : 0.0000   Mean   : 0.0000     
+ 3rd Qu.: 0.51       3rd Qu.: 0.7616    3rd Qu.:  0.3790   3rd Qu.: 0.3770   3rd Qu.: 0.3993     
+ Max.   : 4.78       Max.   : 4.2280    Max.   :123.0558   Max.   :13.1794   Max.   :20.7378     
+ NA's   :98052                                                                                   
+ DER_met_phi_centrality DER_lep_eta_centrality   PRI_tau_pt       PRI_tau_eta         PRI_tau_phi      
+ Min.   :-1.11704       Min.   :-1.20          Min.   :-0.8526   Min.   :-2.071398   Min.   :-1.72605  
+ 1st Qu.:-1.07873       1st Qu.:-1.18          1st Qu.:-0.6349   1st Qu.:-0.749736   1st Qu.:-0.86051  
+ Median :-0.05592       Median : 0.09          Median :-0.2991   Median :-0.009372   Median :-0.01532  
+ Mean   : 0.00000       Mean   : 0.00          Mean   : 0.0000   Mean   : 0.000000   Mean   : 0.00000  
+ 3rd Qu.: 1.10516       3rd Qu.: 1.04          3rd Qu.: 0.2922   3rd Qu.: 0.747648   3rd Qu.: 0.86783  
+ Max.   : 1.23842       Max.   : 1.30          Max.   :25.2156   Max.   : 2.088465   Max.   : 1.73172  
+                        NA's   :98052                                                                  
+   PRI_lep_pt       PRI_lep_eta        PRI_lep_phi          PRI_met         PRI_met_phi        PRI_met_sumet    
+ Min.   :-0.9272   Min.   :-1.99187   Min.   :-1.75501   Min.   :-1.2265   Min.   :-1.727114   Min.   :-1.5673  
+ 1st Qu.:-0.6442   1st Qu.:-0.77498   1st Qu.:-0.86187   1st Qu.:-0.6153   1st Qu.:-0.864688   1st Qu.:-0.6887  
+ Median :-0.2803   Median :-0.02163   Median : 0.02302   Median :-0.2165   Median :-0.002813   Median :-0.2301  
+ Mean   : 0.0000   Mean   : 0.00000   Mean   : 0.00000   Mean   : 0.0000   Mean   : 0.000000   Mean   : 0.0000  
+ 3rd Qu.: 0.2987   3rd Qu.: 0.76775   3rd Qu.: 0.86774   3rd Qu.: 0.3012   3rd Qu.: 0.867328   3rd Qu.: 0.4277  
+ Max.   :18.7350   Max.   : 2.01747   Max.   : 1.70311   Max.   :82.3100   Max.   : 1.735816   Max.   :11.9438  
+                                                                                                                
+  PRI_jet_num        PRI_jet_leading_pt PRI_jet_leading_eta PRI_jet_leading_phi PRI_jet_subleading_pt
+ Min.   :-1.027401   Min.   :-0.92      Min.   :-2.48       Min.   :-1.72       Min.   :-0.88        
+ 1st Qu.:-1.027401   1st Qu.:-0.67      1st Qu.:-0.76       1st Qu.:-0.87       1st Qu.:-0.64        
+ Median :-0.002946   Median :-0.31      Median : 0.00       Median :-0.02       Median :-0.30        
+ Mean   : 0.000000   Mean   : 0.00      Mean   : 0.00       Mean   : 0.00       Mean   : 0.00        
+ 3rd Qu.: 1.021509   3rd Qu.: 0.31      3rd Qu.: 0.76       3rd Qu.: 0.87       3rd Qu.: 0.29        
+ Max.   : 2.045964   Max.   :11.00      Max.   : 2.48       Max.   : 1.74       Max.   :21.19        
+                     NA's   :54381      NA's   :54381       NA's   :54381       NA's   :98052        
+ PRI_jet_subleading_eta PRI_jet_subleading_phi PRI_jet_all_pt        Signal      
+ Min.   :-2.17          Min.   :-1.73          Min.   :-0.7665   Min.   :-0.863  
+ 1st Qu.:-0.79          1st Qu.:-0.86          1st Qu.:-0.7665   1st Qu.:-0.863  
+ Median : 0.00          Median : 0.00          Median :-0.3317   Median :-0.863  
+ Mean   : 0.00          Mean   : 0.00          Mean   : 0.0000   Mean   : 0.000  
+ 3rd Qu.: 0.80          3rd Qu.: 0.87          3rd Qu.: 0.3975   3rd Qu.: 1.159  
+ Max.   : 2.18          Max.   : 1.73          Max.   :15.7976   Max.   : 1.159  
+ NA's   :98052          NA's   :98052                                            
+>
+> aggr(trgData[,c(5,6,7,13,27,28,29)], plot=F)
+
+ Missings in variables:
+               Variable Count
+   DER_deltaeta_jet_jet 98052
+       DER_mass_jet_jet 98052
+    DER_prodeta_jet_jet 98052
+ DER_lep_eta_centrality 98052
+  PRI_jet_subleading_pt 98052
+ PRI_jet_subleading_eta 98052
+ PRI_jet_subleading_phi 98052
+ 
+ 
+ 
+ > model <- glm(Signal~.,data=trgData, family=binomial(logit))
+> summary(model)
+
+Call:
+glm(formula = Signal ~ ., family = binomial(logit), data = trgData)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-4.1215  -0.9137   0.3324   0.8775   3.7412  
+
+Coefficients:
+                              Estimate Std. Error z value Pr(>|z|)    
+(Intercept)                  5.918e-01  4.788e-02  12.359  < 2e-16 ***
+DER_mass_MMC                -1.360e-01  3.413e-02  -3.984 6.77e-05 ***
+DER_mass_transverse_met_lep -4.149e-01  1.754e-02 -23.660  < 2e-16 ***
+DER_mass_vis                -4.057e-01  4.193e-02  -9.676  < 2e-16 ***
+DER_pt_h                     7.952e-01  4.672e-02  17.019  < 2e-16 ***
+DER_deltaeta_jet_jet        -4.032e-01  3.477e-02 -11.596  < 2e-16 ***
+DER_mass_jet_jet             1.183e+00  4.456e-02  26.538  < 2e-16 ***
+DER_prodeta_jet_jet          5.701e-02  2.290e-02   2.490   0.0128 *  
+DER_deltar_tau_lep           9.308e-01  2.950e-02  31.556  < 2e-16 ***
+DER_pt_tot                  -1.349e-01  1.471e-02  -9.168  < 2e-16 ***
+DER_sum_pt                   1.437e+03  2.385e+03   0.603   0.5468    
+DER_pt_ratio_lep_tau        -4.812e-01  2.418e-02 -19.902  < 2e-16 ***
+DER_met_phi_centrality       3.793e-01  1.928e-02  19.668  < 2e-16 ***
+DER_lep_eta_centrality       4.104e-01  1.569e-02  26.163  < 2e-16 ***
+PRI_tau_pt                  -2.815e+02  4.675e+02  -0.602   0.5472    
+PRI_tau_eta                 -2.257e-02  1.565e-02  -1.442   0.1494    
+PRI_tau_phi                  1.740e-03  1.263e-02   0.138   0.8904    
+PRI_lep_pt                  -2.725e+02  4.531e+02  -0.601   0.5475    
+PRI_lep_eta                 -1.493e-02  1.611e-02  -0.927   0.3541    
+PRI_lep_phi                  2.363e-02  1.344e-02   1.758   0.0788 .  
+PRI_met                      7.607e-02  2.831e-02   2.687   0.0072 ** 
+PRI_met_phi                  3.382e-03  1.330e-02   0.254   0.7993    
+PRI_met_sumet               -2.989e-01  2.750e-02 -10.868  < 2e-16 ***
+PRI_jet_num                 -4.280e-01  4.245e-02 -10.082  < 2e-16 ***
+PRI_jet_leading_pt          -5.795e-01  4.693e-02 -12.347  < 2e-16 ***
+PRI_jet_leading_eta          6.390e-03  1.353e-02   0.472   0.6368    
+PRI_jet_leading_phi          1.136e-02  1.346e-02   0.844   0.3987    
+PRI_jet_subleading_pt       -4.875e-02  3.083e-02  -1.581   0.1139    
+PRI_jet_subleading_eta       1.872e-02  1.302e-02   1.437   0.1506    
+PRI_jet_subleading_phi      -9.083e-03  1.223e-02  -0.743   0.4575    
+PRI_jet_all_pt              -1.213e+03  2.013e+03  -0.603   0.5468    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 54936  on 40031  degrees of freedom
+Residual deviance: 42302  on 40001  degrees of freedom
+  (100457 observations deleted due to missingness)
+AIC: 42364
+
+Number of Fisher Scoring iterations: 5
+
+
+********************************************************************
+* 												GBM														*
+********************************************************************
+
+set.seed("1234")
+numTrees <- 1000
+
+
+GBM <- gbm(Signal~.,
+            data= trgData, # dataset
+            distribution="bernoulli", # see the help for other choices
+            n.trees=numTrees, # number of trees)
+            shrinkage=0.01, # shrinkage or learning rate,
+           cv.folds=5,
+            # 0.001 to 0.1 usually work
+            interaction.depth=5, # 1: additive model, 2: two-way interactions, etc.
+            bag.fraction = 0.5, # subsampling fraction, 0.5 is probably best
+            n.minobsinnode = 10, # minimum total weight needed in each node
+            verbose=FALSE) # don't print out progressplot 
+
+
+
+  #gbm.perf(model)
+prob<-predict(GBM,newdata=testData, 
+                           type="response", 
+                           n.trees=numTrees) 
+
+plotAMS(-5,200,prob,resData)
+[1] "Best Threshold:  0.800000000000001 , AMS:  1.86873069397128"
+
+
+
+interaction.depth=1, # 1: additive model, 2: two-way interactions, etc.
+[1] "Best Threshold:  0.7 , AMS:  1.51654405685505"
+
