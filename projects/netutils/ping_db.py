@@ -6,11 +6,13 @@ import math
 from datetime import datetime
 import seaborn as sns
 
+NUM_BARS = 20
+
 plt.style.use("dark_background")
 
-fig = plt.figure(figsize=(4, 3))
+fig = plt.figure(figsize=(8, 3))
 ax1 = fig.add_subplot(1,1,1)
-fig.subplots_adjust(bottom=0.2)
+fig.subplots_adjust(bottom=0.3)
 
 def curr_time():
   now = datetime.now()
@@ -18,8 +20,8 @@ def curr_time():
   return current_time
 
 time_now = curr_time()
-timeArray = deque([time_now]*10)
-dataArray = deque([0]*10)
+timeArray = deque([time_now]*NUM_BARS)
+dataArray = deque([0]*NUM_BARS)
 
 def update_data():
   out = subprocess.Popen(["ping", "-c", "1", "google.com"], 
