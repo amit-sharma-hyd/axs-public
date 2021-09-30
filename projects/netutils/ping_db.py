@@ -3,7 +3,7 @@ import matplotlib.animation as animation
 import subprocess
 from collections import deque
 import math
-from datetime import datetime
+from datetime import datetime, timedelta
 import seaborn as sns
 
 NUM_BARS = 20
@@ -19,9 +19,14 @@ def curr_time():
   current_time = now.strftime("%H:%M:%S")
   return current_time
 
-time_now = curr_time()
-timeArray = deque([time_now]*NUM_BARS)
+timeArray = deque()
 dataArray = deque([0]*NUM_BARS)
+
+# Initialize timestamps for x-axis
+time_now = datetime.now()
+for i in range(NUM_BARS):
+  ts = time_now - timedelta(seconds=i)
+  timeArray.appendleft(ts.strftime("%H:%M:%S"))
 
 def update_data():
   out = subprocess.Popen(["ping", "-c", "1", "google.com"], 
